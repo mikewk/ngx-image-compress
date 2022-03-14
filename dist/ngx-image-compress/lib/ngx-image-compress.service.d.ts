@@ -37,7 +37,7 @@ export declare class NgxImageCompressService {
      | maxwidth    | number | Maximum width in pixels if you need to resize (optional, default: 0 - no resize)  |
      | maxheight   | number | Maximum height in pixels if you need to resize (optional, default: 0 - no resize) |
      */
-    compressFile(image: DataUrl, orientation: DOC_ORIENTATION, ratio?: number, quality?: number, maxWidth?: number, maxHeight?: number): Promise<DataUrl>;
+    compressFile(image: DataUrl, orientation: DOC_ORIENTATION, ratio?: number, quality?: number, maxWidth?: number, maxHeight?: number, mime?: string): Promise<DataUrl>;
     /**
      * Most simple function to use here.
      * Perform an upload and return an image dataUrl (string format) with a maximum size, given in *MegaBytes*

@@ -202,7 +202,8 @@ export class ImageCompress {
     ratio: number = 50,
     quality: number = 50,
     maxwidth: number = 0,
-    maxheight: number = 0
+    maxheight: number = 0,
+    mime: string = ""
   ): Promise<string> =>
     new Promise(function (resolve, reject) {
       quality = quality / 100;
@@ -267,11 +268,12 @@ export class ImageCompress {
           // no orientation value found - same as default UP
           ctx.drawImage(sourceImage, 0, 0, canvas.width, canvas.height);
         }
-
-        const mime = imageDataUrlSource.substr(
-          5,
-          imageDataUrlSource.split(';')[0].length - 5
-        );
+        if( mime == "" ) {
+          mime = imageDataUrlSource.substr(
+            5,
+            imageDataUrlSource.split(';')[0].length - 5
+          );
+        }
         // TODO test on mime
         const result = canvas.toDataURL(mime, quality);
 

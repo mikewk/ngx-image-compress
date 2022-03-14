@@ -65,9 +65,10 @@ export class NgxImageCompressService {
     ratio: number = 50,
     quality: number = 50,
     maxWidth: number = 0,
-    maxHeight: number = 0
+    maxHeight: number = 0,
+    mime: string = ""
   ): Promise<DataUrl> {
-    return ImageCompress.compress(image, orientation, this.render, ratio, quality, maxWidth, maxHeight);
+    return ImageCompress.compress(image, orientation, this.render, ratio, quality, maxWidth, maxHeight, mime);
   }
 
   /**

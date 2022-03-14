@@ -25,7 +25,7 @@ export class AppComponent {
         console.warn('Size in bytes was:', this.imageCompress.byteCount(image));
 
         this.imageCompress
-          .compressFile(image, orientation, 50, 50)
+          .compressFile(image, orientation, 50, 50, undefined, undefined, "image/jpeg")
           .then(
             (result: DataUrl) => {
               this.imgResultAfterCompress = result;

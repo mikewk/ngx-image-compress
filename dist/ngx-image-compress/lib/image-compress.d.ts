@@ -8,7 +8,7 @@ export declare class ImageCompress {
     static fileToDataURL: (file: File) => Promise<string>;
     static generateUploadInputRenderer: (render: Renderer2, multiple?: boolean) => Promise<FileList | null>;
     static generateUploadInputNative: (documentNativeApi: any, multiple?: boolean) => Promise<FileList | null>;
-    static compress: (imageDataUrlSource: DataUrl, orientation: DOC_ORIENTATION, render: Renderer2, ratio?: number, quality?: number, maxwidth?: number, maxheight?: number) => Promise<string>;
+    static compress: (imageDataUrlSource: DataUrl, orientation: DOC_ORIENTATION, render: Renderer2, ratio?: number, quality?: number, maxwidth?: number, maxheight?: number, mime?: string) => Promise<string>;
     static byteCount: (imgString: DataUrl) => number;
     static getImageMaxSize: (maxSizeMb: number, debugMode: boolean, render: Renderer2) => Promise<DataUrl>;
 }

@@ -184,7 +184,7 @@ ImageCompress.generateUploadInputNative = (documentNativeApi, multiple = true) =
         inputElement.click();
     });
 };
-ImageCompress.compress = (imageDataUrlSource, orientation, render, ratio = 50, quality = 50, maxwidth = 0, maxheight = 0) => new Promise(function (resolve, reject) {
+ImageCompress.compress = (imageDataUrlSource, orientation, render, ratio = 50, quality = 50, maxwidth = 0, maxheight = 0, mime = "") => new Promise(function (resolve, reject) {
     quality = quality / 100;
     ratio = ratio / 100;
     const sourceImage = new Image();
@@ -240,7 +240,9 @@ ImageCompress.compress = (imageDataUrlSource, orientation, render, ratio = 50, q
             // no orientation value found - same as default UP
             ctx.drawImage(sourceImage, 0, 0, canvas.width, canvas.height);
         }
-        const mime = imageDataUrlSource.substr(5, imageDataUrlSource.split(';')[0].length - 5);
+        if (mime == "") {
+            mime = imageDataUrlSource.substr(5, imageDataUrlSource.split(';')[0].length - 5);
+        }
         // TODO test on mime
         const result = canvas.toDataURL(mime, quality);
         resolve(result);
@@ -344,8 +346,8 @@ class NgxImageCompressService {
      | maxwidth    | number | Maximum width in pixels if you need to resize (optional, default: 0 - no resize)  |
      | maxheight   | number | Maximum height in pixels if you need to resize (optional, default: 0 - no resize) |
      */
-    compressFile(image, orientation, ratio = 50, quality = 50, maxWidth = 0, maxHeight = 0) {
-        return ImageCompress.compress(image, orientation, this.render, ratio, quality, maxWidth, maxHeight);
+    compressFile(image, orientation, ratio = 50, quality = 50, maxWidth = 0, maxHeight = 0, mime = "") {
+        return ImageCompress.compress(image, orientation, this.render, ratio, quality, maxWidth, maxHeight, mime);
     }
     /**
      * Most simple function to use here.
